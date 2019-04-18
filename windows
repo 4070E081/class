@@ -1,4 +1,4 @@
-"ipconfig"
+ipconfig
 使用方式:
         ipconfig [/allcompartments] [/? | /all |
                                  /renew [adapter] | /release [adapter] |

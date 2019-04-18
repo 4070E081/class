@@ -46,3 +46,78 @@ TCP/IP 介面卡的 IP 位址租用。
                                               "Wired Ethernet Connection 2"
     > ipconfig /allcompartments      ... 顯示所有區間的相關資訊
     > ipconfig /allcompartments /all ... 顯示所有區間的詳細資訊
+
+
+tasklist
+
+TASKLIST [/S system [/U username [/P [password]]]]
+         [/M [module] | /SVC | /V] [/FI filter] [/FO format] [/NH]
+
+描述:
+    此工具會顯示本機或遠端電腦上，
+    目前正在執行中的處理程序清單。
+
+參數清單:
+   /S     system           指定要連線的遠端系統。
+
+   /U     [domain\]user    指定要執行命令的使用者內容。
+   /P     [password]       指定給定之使用者內容的密碼。
+                           如果省略，會出現密碼輸入要求。
+
+   /M     [module]         使用指定的 exe/dll 名稱列出
+                           所有工作。如果沒有指定模組名稱，
+                           則會顯示所有已載入的模組。
+
+   /SVC                    顯示每個處理程序中所主控的服務。
+
+   /APPS                   顯示「Microsoft Store 應用程式」及其相關的程序。
+
+   /V                      顯示詳細工作資訊。
+
+   /FI    filter           顯示符合篩選器指定條件
+                           的工作組。
+
+   /FO    format           指定輸出格式。
+                           有效值: "TABLE"、"LIST"、"CSV"。
+
+   /NH                     指定不要在輸出中顯示的
+                           欄標題。
+                           只有在 "TABLE" 與 "CSV" 格式有效。
+
+   /?                      顯示此說明訊息。
+
+篩選器:
+    篩選器名稱      有效的運算子              有效的值
+    -----------     ---------------           --------------------------
+    STATUS          eq, ne                    RUNNING | SUSPENDED
+                                              NOT RESPONDING | UNKNOWN
+    IMAGENAME       eq, ne                    影像名稱
+    PID             eq, ne, gt, lt, ge, le    PID 值
+    SESSION         eq, ne, gt, lt, ge, le    工作階段號碼
+    SESSIONNAME     eq, ne                    工作階段名稱
+    CPUTIME         eq, ne, gt, lt, ge, le    CPU 時間，格式
+                                              是 hh:mm:ss。
+                                              hh - 小時，
+                                              mm - 分鐘，ss - 秒
+    MEMUSAGE        eq, ne, gt, lt, ge, le    記憶體使用量 (單位為 KB)
+    USERNAME        eq, ne                    使用者名稱，格式為
+                                              [domain\]user
+    SERVICES        eq, ne                    服務名稱
+    WINDOWTITLE     eq, ne                    視窗標題
+    MODULES         eq, ne                    DLL 名稱
+
+注意: 查詢遠端電腦時，不支援使用 "WINDOWTITLE" 與 "STATUS"
+      篩選器。
+
+Examples:
+    TASKLIST
+    TASKLIST /M
+    TASKLIST /V /FO CSV
+    TASKLIST /SVC /FO LIST
+    TASKLIST /APPS /FI "STATUS eq RUNNING"
+    TASKLIST /M wbem*
+    TASKLIST /S system /FO LIST
+    TASKLIST /S system /U domain\username /FO CSV /NH
+    TASKLIST /S system /U username /P password /FO TABLE /NH
+    TASKLIST /FI "USERNAME ne NT AUTHORITY\SYSTEM" /FI "STATUS eq running"
+
